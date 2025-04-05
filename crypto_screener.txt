@@ -1,0 +1,146 @@
+[
+  {
+    "Symbol": "PI",
+    "Name": "Pi",
+    "Price": 0.5898,
+    "24-hour Change (%)": 13.01601421,
+    "24-hour Volume": 1424917156.05,
+    "Market Cap": 4024231474.82,
+    "Recommendation": "Day Trade",
+    "Reason for Recommendation": "High volatility (13% increase in 24-hour), strong trading volume ($1.42 billion), ideal conditions for quick intraday profits.",
+    "Trading Strategy": {
+      "Entry": 0.5850,
+      "Exit": 0.6200,
+      "Duration": "1-2 hours",
+      "Potential Return (%)": 5.98,
+      "Aspect": "Strong momentum, large liquidity"
+    },
+    "Speculated Profit for 100 dollars": 5.98
+  },
+  {
+    "Symbol": "FUN",
+    "Name": "FUNToken",
+    "Price": 0.0082,
+    "24-hour Change (%)": 50.37510585,
+    "24-hour Volume": 159176867.5,
+    "Market Cap": 88837842.29,
+    "Recommendation": "Day Trade",
+    "Reason for Recommendation": "Extreme intraday volatility of 50%, creating large short-term trading opportunities. Excellent volume to support entry and exit.",
+    "Trading Strategy": {
+      "Entry": 0.0079,
+      "Exit": 0.0090,
+      "Duration": "30 minutes-1 hour",
+      "Potential Return (%)": 13.92,
+      "Aspect": "Rapid price action, strong liquidity"
+    },
+    "Speculated Profit for 100 dollars": 13.92
+  },
+  {
+    "Symbol": "AUCTION",
+    "Name": "Bounce Token",
+    "Price": 15.0642,
+    "24-hour Change (%)": 12.20528318,
+    "24-hour Volume": 201520041.69,
+    "Market Cap": 99275292.76,
+    "Recommendation": "Swing Trade",
+    "Reason for Recommendation": "Moderate-high volatility (12.2%), coupled with sizeable trading volume ($201M). Clearly trending upward, making it suitable for multiday swing trading.",
+    "Trading Strategy": {
+      "Entry": 14.8000,
+      "Exit": 16.5000,
+      "Duration": "3-5 days",
+      "Potential Return (%)": 11.49,
+      "Aspect": "Strong and sustained momentum"
+    },
+    "Speculated Profit for 100 dollars": 11.49
+  },
+  {
+    "Symbol": "OKB",
+    "Name": "OKB",
+    "Price": 51.9493,
+    "24-hour Change (%)": 5.82117758,
+    "24-hour Volume": 15773295.29,
+    "Market Cap": 3116956991.52,
+    "Recommendation": "Swing Trade",
+    "Reason for Recommendation": "Stable liquidity, promising upward momentum (5.8% daily increase). Less volatile compared to others, good candidate for safer swing positions.",
+    "Trading Strategy": {
+      "Entry": 51.5000,
+      "Exit": 54.2000,
+      "Duration": "2-3 days",
+      "Potential Return (%)": 5.24,
+      "Aspect": "Lower risk, consistent upward trend"
+    },
+    "Speculated Profit for 100 dollars": 5.24
+  },
+  {
+    "Symbol": "AI16Z",
+    "Name": "ai16z",
+    "Price": 0.1269,
+    "24-hour Change (%)": -10.22564457,
+    "24-hour Volume": 80434593.56,
+    "Market Cap": 139607918.3,
+    "Recommendation": "Day Trade",
+    "Reason for Recommendation": "Significant sharp decline (-10.22%), high volume trading (80.4M), excellent for scalping and intraday reversal trades.",
+    "Trading Strategy": {
+      "Entry": 0.1245,
+      "Exit": 0.1305,
+      "Duration": "1 hour",
+      "Potential Return (%)": 4.82,
+      "Aspect": "Possible intraday rebound from oversold levels"
+    },
+    "Speculated Profit for 100 dollars": 4.82
+  },
+  {
+    "Symbol": "VIDT",
+    "Name": "VIDT DAO",
+    "Price": 0.0233,
+    "24-hour Change (%)": -11.88436185,
+    "24-hour Volume": 11548737.53,
+    "Market Cap": 19631018.88,
+    "Recommendation": "Day Trade",
+    "Reason for Recommendation": "High volatility due to substantial downside movement, creating conditions for potential quick rebounds. Volume supports fast entry and exit.",
+    "Trading Strategy": {
+      "Entry": 0.0228,
+      "Exit": 0.0245,
+      "Duration": "1-2 hours",
+      "Potential Return (%)": 7.46,
+      "Aspect": "Aggressive volatility-based trade."
+    },
+    "Speculated Profit for 100 dollars": 7.46
+  },
+  {
+    "Symbol": "PRQ",
+    "Name": "PARSIQ",
+    "Price": 0.0767,
+    "24-hour Change (%)": 10.03658693,
+    "24-hour Volume": 1657234.29,
+    "Market Cap": 23792839.42,
+    "Recommendation": "Swing Trade",
+    "Reason for Recommendation": "Solid upward momentum (10%), moderate trading volume ($1.65M). Strong potential for continued uptrend over days.",
+    "Trading Strategy": {
+      "Entry": 0.0750,
+      "Exit": 0.0835,
+      "Duration": "3-4 days",
+      "Potential Return (%)": 11.33,
+      "Aspect": "Good risk/reward, strong short-term upside."
+    },
+    "Speculated Profit for 100 dollars": 11.33
+  },
+  {
+    "Symbol": "BIGTIME",
+    "Name": "Big Time",
+    "Price": 0.0676,
+    "24-hour Change (%)": 5.57562336,
+    "24-hour Volume": 140344893.19,
+    "Market Cap": 122684082.47,
+    "Recommendation": "Swing Trade",
+    "Reason for Recommendation": "Moderate volatility with solid upward trend. High volume ($140M) supports comfortable swing position.",
+    "Trading Strategy": {
+      "Entry": 0.0665,
+      "Exit": 0.0720,
+      "Duration": "2-4 days",
+      "Potential Return (%)": 8.27,
+      "Aspect": "Moderate risk, stable bullish momentum"
+    },
+    "Speculated Profit for 100 dollars": 8.27
+  }
+]
