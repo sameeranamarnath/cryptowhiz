@@ -67,9 +67,7 @@ def ensure_collection() -> str:
     if not c.collection_exists(s.qdrant_collection):
         c.create_collection(
             collection_name=s.qdrant_collection,
-            vectors_config=models.VectorParams(
-                size=s.embed_dim, distance=models.Distance.COSINE
-            ),
+            vectors_config=models.VectorParams(size=s.embed_dim, distance=models.Distance.COSINE),
         )
     return s.qdrant_collection
 
@@ -87,19 +85,23 @@ def upsert_notes(notes: list[dict[str, Any]]) -> int:
             vector=v,
             payload={k: val for k, val in n.items() if k != "text"} | {"text": t},
         )
-        for i, (n, t, v) in enumerate(zip(notes, texts, vectors))
+        for i, (n, t, v) in enumerate(zip(notes, texts, vectors, strict=False))
     ]
     c.upsert(collection_name=collection, points=points)
     return len(points)
 
 
-def search_notes(query: str, symbol: str | None = None, top_k: int | None = None) -> list[dict[str, Any]]:
+def search_notes(
+    query: str, symbol: str | None = None, top_k: int | None = None
+) -> list[dict[str, Any]]:
     s = get_settings()
     collection = ensure_collection()
     query_filter = None
     if symbol:
         query_filter = models.Filter(
-            must=[models.FieldCondition(key="symbol", match=models.MatchValue(value=symbol.lower()))]
+            must=[
+                models.FieldCondition(key="symbol", match=models.MatchValue(value=symbol.lower()))
+            ]
         )
     hits = qdrant().search(
         collection_name=collection,

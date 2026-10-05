@@ -63,8 +63,10 @@ def technicals(state: ResearchState) -> dict[str, Any]:
         "last_close": round(float(close.iloc[-1]), 4),
         "rsi14": round(float(_rsi(close).iloc[-1]), 2),
         "sma50": round(float(close.rolling(50).mean().iloc[-1]), 4) if len(close) >= 50 else None,
-        "sma200": round(float(close.rolling(200).mean().iloc[-1]), 4) if len(close) >= 200 else None,
-        "annualised_vol": round(float(returns.std() * (365 ** 0.5)), 4),
+        "sma200": round(float(close.rolling(200).mean().iloc[-1]), 4)
+        if len(close) >= 200
+        else None,
+        "annualised_vol": round(float(returns.std() * (365**0.5)), 4),
         "pct_change_30d": (
             round(float(close.iloc[-1] / close.iloc[-31] - 1) * 100, 2) if len(close) > 31 else None
         ),
@@ -77,7 +79,10 @@ def news(state: ResearchState) -> dict[str, Any]:
 
 
 def risk(state: ResearchState) -> dict[str, Any]:
-    headlines = "\n".join(f"- {n.get('text', '')[:200]}" for n in state.get("news", [])) or "- (none stored)"
+    headlines = (
+        "\n".join(f"- {n.get('text', '')[:200]}" for n in state.get("news", []))
+        or "- (none stored)"
+    )
     prompt = (
         "You are the risk node in a research pipeline. Using the numbers and notes "
         "below, state the case for and against, and name what would invalidate it. "

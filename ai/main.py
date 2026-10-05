@@ -1,7 +1,8 @@
 """HTTP surface for the crypto research service."""
 
 import json
-from typing import Any, AsyncIterator
+from collections.abc import AsyncIterator
+from typing import Any
 
 from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
@@ -9,6 +10,7 @@ from pydantic import BaseModel, Field
 
 from core import get_settings, search_notes, upsert_notes
 from graph import APP, analyse
+from guardrails import sanitise
 
 api = FastAPI(title="crypto research graph", version="1.0.0")
 
@@ -42,7 +44,8 @@ def health() -> dict[str, Any]:
 @api.post("/notes")
 def add_notes(req: NotesRequest) -> dict[str, int]:
     payload = [
-        {k: v for k, v in n.model_dump().items() if v is not None} for n in req.notes
+        {**{k: v for k, v in n.model_dump().items() if v is not None}, "text": sanitise(n.text)}
+        for n in req.notes
     ]
     return {"stored": upsert_notes(payload)}
 
@@ -67,7 +70,8 @@ async def analyse_stream(req: AnalyseRequest) -> StreamingResponse:
             state["days"] = req.days
         for step in APP.stream(state):
             for node, update in step.items():
-                yield f"event: node\ndata: {json.dumps({'node': node, 'update': _safe(update)})}\n\n"
+                payload = json.dumps({"node": node, "update": _safe(update)})
+                yield f"event: node\ndata: {payload}\n\n"
                 state.update(update)
         yield f"event: done\ndata: {json.dumps(_safe(state))}\n\n"
 
