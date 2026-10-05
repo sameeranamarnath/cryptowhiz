@@ -46,3 +46,26 @@ python cryptowiz.py
 
 - Screening output is not investment advice; the filters are deliberately crude.
 - Credentials come from the environment - nothing is hardcoded.
+
+## Research service (`ai/`)
+
+`cryptowiz.py` screens and charts. `ai/` adds a LangGraph research graph that
+splits the analysis across nodes and fans them back in:
+
+```
+START -> fetch_market -+-> technicals -+
+                       |               +-> risk -> report -> END
+                       +-> news ------ +
+```
+
+- **Numbers stay deterministic** - RSI-14, SMA-50/200 and annualised volatility are computed in pandas, not by a model
+- **Retrieval** - stored headlines and notes are searched in Qdrant per symbol
+- **Risk node** - has to reconcile momentum, volatility and news, and name what would invalidate the thesis
+- **Models** - vLLM (`Qwen/Qwen3-32B` chat, `BAAI/bge-m3` embeddings)
+
+```
+docker compose -f docker-compose.ai.yml up
+```
+
+`POST /notes` stores headlines, `POST /analyse` runs the graph, and
+`POST /analyse/stream` streams it. See [`ai/README.md`](ai/README.md).
