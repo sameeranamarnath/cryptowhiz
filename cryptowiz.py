@@ -1,70 +1,19 @@
-'''
-Alright, I hear you loud and clear! You're looking for those juicy, high-return crypto plays. While identifying positions with 30-100% daily moves or 300% over several months is ambitious (and definitely possible in the crypto world), it also comes with big risks. So, let’s approach this systematically and responsibly.   
-  
-Here’s the kind of data I’d need to help you screen and analyze cryptos for such setups:  
-   
----  
-   
-### **1. Market Conditions**  
-   - **Overall Market Sentiment:** Is Bitcoin (BTC) and Ethereum (ETH) bullish or bearish? The crypto market often follows BTC, so understanding its trend is crucial.  
-   - **Dominance:** Bitcoin Dominance (BTC.D) can help determine whether altcoins are likely to rally. Lower dominance often signals an altcoin season.  
-   
----  
-   
-### **2. Specific Coin Data**  
-   - **Market Cap:** Are you looking for small-cap, mid-cap, or large-cap cryptos? Smaller-cap coins tend to have higher potential returns but also higher risk.  
-   - **Circulating Supply vs. Total Supply:** Coins with a small circulating supply and low inflation can pump harder.  
-   - **Volume:** High volume is essential for liquidity and to confirm strong moves. Coins with low volume are risky because it's harder to enter and exit positions.  
-   
----  
-   
-### **3. Technical Analysis (TA)**  
-   - **Price Action:** Look for coins forming bullish patterns like breakouts, consolidation, or support levels. Are they showing signs of accumulation?  
-   - **Momentum Indicators:** RSI, MACD, and Stochastic Oscillator can help identify overbought or oversold conditions.  
-   - **Key Levels:** Support and resistance zones, Fibonacci retracement levels, or moving averages like the 50-day and 200-day can act as triggers.  
-   - **Volume Profile:** Check for volume spikes on breakouts—this is crucial to confirm the strength of the move.  
-   
----  
-   
-### **4. Fundamental Catalysts**  
-   - **Upcoming News:** Look for tokens with upcoming events like partnerships, mainnet launches, or protocol upgrades. Websites like CoinMarketCal track crypto events.  
-   - **Use Case:** Does the project solve a real problem? Meme coins can pump, but fundamentally strong projects have better long-term potential.  
-   - **Ecosystem Growth:** Are they onboarding developers, partnerships, or new integrations? For example, Layer 2 projects like Arbitrum or Optimism have been gaining traction.  
-   
----  
-   
-### **5. Sentiment Analysis**  
-   - **Social Media Hype:** Monitor platforms like Twitter, Reddit, and Telegram for trending coins. But beware of pump-and-dump schemes.  
-   - **Fear & Greed Index:** This can help gauge whether the market is overly bullish or fearful—use it to time your entries.  
-   
----  
-   
-### **6. Time Horizon**  
-   - **Day Trades (30-100% Daily Moves):** Focus on highly volatile coins with small market caps and high volume. Look for coins breaking out of patterns or showing explosive momentum.  
-   - **Swing Trades (300% in 8 Months):** Look for fundamentally strong mid-cap coins that are undervalued or in accumulation phases.  
-   
----  
-   
-### **What I Need from You:**  
-1. **Risk Tolerance:** Are you comfortable with high-risk, high-reward plays, or do you want a mix of safer options?  
-2. **Capital Allocation:** How much are you planning to allocate to these trades? This will help with position sizing.  
-3. **Preferred Type of Crypto:** Are you looking at meme coins, DeFi projects, gaming tokens, or infrastructure plays?  
-4. **Time Availability:** Are you actively monitoring the markets, or do you want more set-it-and-forget-it setups?  
-   
----  
-   
-### **Tools for Screening**  
-If you’re ready to start screening, here are some tools I recommend:  
-- **CoinMarketCap/CoinGecko:** For market data and trending coins.  
+﻿"""Crypto screening and charting utilities.
 
-'''  
+Fetches market data from CoinMarketCap and CoinGecko, filters for high-momentum
+setups, plots price charts, and asks Azure OpenAI for trading commentary.
+
+Credentials are read from the environment - see .env.example.
+"""
+import os
+
 import requests  
 import pandas as pd  
 from openai import AzureOpenAI  
 # Azure OpenAI API Config  
-AZURE_OPENAI_ENDPOINT = "https://samee-m94pw60g-eastus2.openai.azure.com/"  
-AZURE_OPENAI_API_KEY = "BO8xRWdpmbIkArN0eNGZa0Dth49ss0LWC4Hhv86JqYZUAetbYfMcJQQJ99BDACHYHv6XJ3w3AAAAACOG45gu"  
-AZURE_OPENAI_DEPLOYMENT = "gpt-4.5-preview"  # e.g., "gpt-4" or "gpt-3.5-turbo"  
+AZURE_OPENAI_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT", "")
+AZURE_OPENAI_API_KEY = os.getenv("AZURE_OPENAI_API_KEY", "")
+AZURE_OPENAI_DEPLOYMENT = os.getenv("AZURE_OPENAI_DEPLOYMENT", "gpt-4o")
   
 import requests  
 import matplotlib.pyplot as plt  
@@ -74,7 +23,7 @@ import os
   
 # Load your CoinMarketCap API key from a .env file or environment variable  
 #load_dotenv()  
-CMC_API_KEY = "24e7dbc7-b1e3-49c0-8e80-79d787f829f5"  
+CMC_API_KEY = os.getenv("CMC_API_KEY", "")
   
 def get_crypto_historical_chart(symbol, days=7, interval='daily', currency='USD'):  
     """  
@@ -234,9 +183,9 @@ def filter_cryptos(df, min_volume=500000, min_change=10, max_change=1000, max_ma
   
 # Function to interact with Azure OpenAI and get advice  
 import openai  
-endpoint = "https://samee-m94pw60g-eastus2.openai.azure.com/"
-model_name = "gpt-4.5-preview"
-deployment = "gpt-4.5-preview"
+endpoint = AZURE_OPENAI_ENDPOINT
+model_name = AZURE_OPENAI_DEPLOYMENT
+deployment = AZURE_OPENAI_DEPLOYMENT
 
 subscription_key = AZURE_OPENAI_API_KEY
 api_version = "2024-12-01-preview"
@@ -299,7 +248,7 @@ from openai import AzureOpenAI
   
   
 # Azure OpenAI Configuration  
-deployment = "gpt-4.5-preview"  # Replace with your deployment name  
+deployment = AZURE_OPENAI_DEPLOYMENT
   
 # Initialize Azure OpenAI client  
 openai = AzureOpenAI(api_key=subscription_key, azure_endpoint=endpoint, api_version=api_version)  
@@ -812,7 +761,7 @@ def fetch_data_from_coingecko():
 def fetch_data_from_coinmarketcap():  
     url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest"  
     headers = {  
-        "X-CMC_PRO_API_KEY": "24e7dbc7-b1e3-49c0-8e80-79d787f829f5"  # Replace with your API key  
+        "X-CMC_PRO_API_KEY": CMC_API_KEY
     }  
     params = {  
         "convert": "USD",  # Fetch prices in USD  
